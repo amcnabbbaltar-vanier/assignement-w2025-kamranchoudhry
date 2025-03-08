@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PauseManager : MonoBehaviour
 {
@@ -46,13 +48,17 @@ public class PauseManager : MonoBehaviour
         isPaused = false;
     }
 
+    public void RestartGame(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    }
+
     // Optional: a method for quitting the game or returning to the main menu.
     public void QuitGame()
     {
         // If you're in the editor, this won't fully work,
         // but in a built application, this will quit the game.
-        Application.Quit();
-        Debug.Log("Player has quit the game");
+        SceneManager.LoadScene("MainMenu");
 
         // If you have a Main Menu scene, you might do:
         // SceneManager.LoadScene("MainMenu");

@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class Health : MonoBehaviour
 {
-    public int maxHealth = 100;
+    public int maxHealth = 3;
     private int currentHealth;
 
     public Slider healthBar;
@@ -27,6 +29,7 @@ public class Health : MonoBehaviour
 
     void Die()
     {
-        
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
     }
 }
