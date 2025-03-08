@@ -199,4 +199,19 @@ public class CharacterMovement : MonoBehaviour
         // Apply the new velocity directly
         rb.velocity = newVelocity;
     }
+
+    public void ApplySpeedBoost(float boostAmount, float duration)
+{
+    speedMultiplier *= boostAmount; // Increase speed
+    Invoke(nameof(ResetSpeed), duration); // Schedule reset after duration
+}
+
+/// <summary>
+/// Resets speed multiplier to default after boost expires.
+/// </summary>
+private void ResetSpeed()
+{
+    speedMultiplier = 1.0f;
+}
+
 }
