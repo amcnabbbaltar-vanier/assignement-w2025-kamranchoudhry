@@ -9,6 +9,7 @@ public class JumpBoost : MonoBehaviour
     public float hoverHeight = 1f;  // Hover height
     public float speedIncrease = 1.5f;  // Amount to increase speed
     public float duration = 30f;  
+    private ParticleSystem hitParticles;
     // Start is called before the first frame update
 
         private Vector3 startPosition;
@@ -16,6 +17,7 @@ public class JumpBoost : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
+        hitParticles = GetComponent<ParticleSystem>();
 
     }
 
@@ -36,6 +38,7 @@ public class JumpBoost : MonoBehaviour
             CharacterMovement player = other.GetComponent<CharacterMovement>();
             if (player != null)
             {
+                hitParticles.Play();
                  player.EnableDoubleJump(duration); // Enable double jump for 30 seconds
             }
              GetComponent<MeshRenderer>().enabled = false;

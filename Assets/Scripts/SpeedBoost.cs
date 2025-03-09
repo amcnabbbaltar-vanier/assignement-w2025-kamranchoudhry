@@ -9,6 +9,8 @@ public class SpeedBoost : MonoBehaviour
     public float hoverHeight = 1f;  // Hover height
     public float speedIncrease = 1.5f;  // Amount to increase speed
     public float duration = 5f;       // How long the speed boost lasts
+    private ParticleSystem hitParticles;
+
 
     private Vector3 startPosition;
 
@@ -16,6 +18,8 @@ public class SpeedBoost : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
+        hitParticles = GetComponent<ParticleSystem>();
+
 
     }
 
@@ -36,6 +40,8 @@ public class SpeedBoost : MonoBehaviour
             CharacterMovement player = other.GetComponent<CharacterMovement>();
             if (player != null)
             {
+                hitParticles.Play();
+
                 player.ApplySpeedBoost(speedIncrease, duration);
             }
         GetComponent<MeshRenderer>().enabled = false;

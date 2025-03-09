@@ -29,6 +29,7 @@ public class CharacterMovement : MonoBehaviour
     private float moveZ; // Stores vertical movement input (W/S or Up/Down Arrow)
     private bool jumpRequest; // Flag to check if the player requested a jump
     private Vector3 moveDirection; // Stores the calculated movement direction
+    private ParticleSystem hitParticles;
 
     // ============================== Animation Variables ==============================
     [Header("Anim values")]
@@ -93,6 +94,8 @@ public class CharacterMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
         animator = GetComponent<Animator>();
+        hitParticles = GetComponent<ParticleSystem>();
+
 
     }
 
@@ -170,6 +173,7 @@ public class CharacterMovement : MonoBehaviour
         }
         else if (canDoubleJump) // Double Jump
         {
+            hitParticles.Play();
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z); // Reset Y velocity
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             canDoubleJump = false; 
