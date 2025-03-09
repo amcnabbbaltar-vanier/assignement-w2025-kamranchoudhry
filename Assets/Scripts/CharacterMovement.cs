@@ -14,7 +14,8 @@ public class CharacterMovement : MonoBehaviour
     [Header("Jump Settings")]
     [SerializeField] private float jumpForce = 5f;        // Jump force applied to the character
     [SerializeField] private float groundCheckDistance = 1.1f; // Distance to check for ground contact (Raycast)
-
+    private bool canDoubleJump = false; 
+    private bool hasDoubleJump = false;
     // ============================== Modifiable from other scripts ==================
     public float speedMultiplier = 1.0f; // Additional multiplier for character speed ( WINK WINK )
 
@@ -156,13 +157,36 @@ public class CharacterMovement : MonoBehaviour
     /// </summary>
     private void HandleJump()
     {
-        // Apply jump force only if jump was requested and the character is grounded
-        if (jumpRequest && IsGrounded)
+       if (jumpRequest)
+    {
+        if (IsGrounded) // Normal Jump
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // Apply force upwards
-            jumpRequest = false; // Reset jump request after applying jump
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z); // Reset Y velocity for consistent jumps
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            canDoubleJump = hasDoubleJump; // Allow double jump if boost is active
         }
+        else if (canDoubleJump) // Double Jump
+        {
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z); // Reset Y velocity
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            canDoubleJump = false; // Disable further double jumps
+        }
+
+        jumpRequest = false;
     }
+    }
+    public void EnableDoubleJump(float duration)
+{
+    hasDoubleJump = true;
+    canDoubleJump = true;
+    Invoke(nameof(DisableDoubleJump), duration); // Disable after duration
+}
+
+private void DisableDoubleJump()
+{
+    hasDoubleJump = false;
+    canDoubleJump = false;
+}
 
     /// <summary>
     /// Rotates the character towards the movement direction.
