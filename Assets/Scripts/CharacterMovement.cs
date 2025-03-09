@@ -18,6 +18,7 @@ public class CharacterMovement : MonoBehaviour
     private bool hasDoubleJump = false;
     // ============================== Modifiable from other scripts ==================
     public float speedMultiplier = 1.0f; // Additional multiplier for character speed ( WINK WINK )
+    private Animator animator; // Declare animator
 
     // ============================== Private Variables ==============================
     private Rigidbody rb; // Reference to the Rigidbody component
@@ -91,6 +92,8 @@ public class CharacterMovement : MonoBehaviour
         // Lock and hide the cursor for better gameplay control
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
+        animator = GetComponent<Animator>();
+
     }
 
     // ============================== Input Handling ==============================
@@ -169,7 +172,10 @@ public class CharacterMovement : MonoBehaviour
         {
             rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z); // Reset Y velocity
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            canDoubleJump = false; // Disable further double jumps
+            canDoubleJump = false; 
+            // Disable further double jumps
+            animator.SetTrigger("DoubleJump");
+
         }
 
         jumpRequest = false;
