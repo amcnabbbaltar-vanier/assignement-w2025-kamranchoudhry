@@ -46,4 +46,8 @@ public class GameManager : MonoBehaviour
         score += amount;
         UpdateUI();
     }
+    public void LoadNextScene(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+    }
 }
