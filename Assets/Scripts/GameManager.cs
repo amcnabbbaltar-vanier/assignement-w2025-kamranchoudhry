@@ -14,18 +14,17 @@ public class GameManager : MonoBehaviour
     public TMP_Text Timer;
     public TMP_Text Score;
 
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+  private void Awake() 
+{     
+    if (Instance != null && Instance != this) 
+    { 
+        Destroy(this); 
+    } 
+    else 
+    { 
+        Instance = this; 
+    } 
+}
 
     void Update()
     {
