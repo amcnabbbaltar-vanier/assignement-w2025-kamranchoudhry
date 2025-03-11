@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Health : MonoBehaviour
 {
     public int maxHealth = 3;
-    private int currentHealth;
+    public int currentHealth;
 
     public Slider healthBar;
 
