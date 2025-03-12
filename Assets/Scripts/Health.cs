@@ -27,9 +27,9 @@ public class Health : MonoBehaviour
         }
     }
 
-    void Die()
-    {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+   void Die()
+{
+    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+}
 
-    }
 }

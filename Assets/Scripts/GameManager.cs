@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using TMPro; // Import TextMeshPro
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,19 +11,25 @@ public class GameManager : MonoBehaviour
     private bool isGameRunning = true;
 
     public TMP_Text Timer;
-    public TMP_Text Score;
+    public TMP_Text Scores;
 
-  private void Awake() 
-{     
-    if (Instance != null && Instance != this) 
-    { 
-        Destroy(this); 
-    } 
-    else 
-    { 
+    private void Awake() 
+    {     
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(gameObject); 
+            return; 
+        } 
+        
         Instance = this; 
-    } 
-}
+        DontDestroyOnLoad(gameObject); 
+        SceneManager.sceneLoaded += OnSceneLoaded; // Listen for scene changes
+    }
+
+    void Start()
+    {
+        AssignUIElements(); // Assign UI elements at start
+    }
 
     void Update()
     {
@@ -37,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateUI()
     {
-        if (Score != null) Score.text = "Score: " + score;
+        if (Scores != null) Scores.text = "Score: " + score;
         if (Timer != null) Timer.text = "Time: " + Mathf.FloorToInt(timer).ToString();
     }
 
@@ -46,8 +51,27 @@ public class GameManager : MonoBehaviour
         score += amount;
         UpdateUI();
     }
-    public void LoadNextScene(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
+    public void LoadNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    void AssignUIElements()
+    {
+        Timer = GameObject.Find("Timer")?.GetComponent<TMP_Text>();
+        Scores = GameObject.Find("Scores")?.GetComponent<TMP_Text>();
+        UpdateUI();
+    }
+
+    // 🔥 Fix: Reconnect UI when scene reloads
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        AssignUIElements();
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded; // Clean up listener
     }
 }

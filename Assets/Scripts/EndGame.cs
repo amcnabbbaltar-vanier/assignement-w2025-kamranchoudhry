@@ -8,6 +8,11 @@ public class EndGame : MonoBehaviour
     // Start is called before the first frame update
     public void RePlay(){
     SceneManager.LoadScene("SampleScene");
+    GameManager.Instance.score = 0;
+    GameManager.Instance.timer = 0;
+
+
+
   }
   public void QuitGame(){
     Application.Quit();

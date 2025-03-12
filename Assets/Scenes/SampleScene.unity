@@ -1235,7 +1235,7 @@ MonoBehaviour:
   score: 0
   timer: 0
   Timer: {fileID: 1220458403}
-  Score: {fileID: 695881190}
+  Scores: {fileID: 0}
 --- !u!4 &505562406
 Transform:
   m_ObjectHideFlags: 0
@@ -1501,7 +1501,7 @@ GameObject:
   - component: {fileID: 695881191}
   - component: {fileID: 695881190}
   m_Layer: 5
-  m_Name: Score
+  m_Name: Scores
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
