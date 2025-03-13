@@ -30,6 +30,8 @@ public class Health : MonoBehaviour
    void Die()
 {
     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    GameManager.Instance.score = GameManager.Instance.savedScore;
+
 }
 
 }

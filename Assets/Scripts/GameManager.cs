@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public int savedScore;
     public int score = 0;
     public float timer = 0f;
     private bool isGameRunning = true;
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         AssignUIElements(); 
+        savedScore = score;
     }
 
     void Update()
@@ -54,7 +56,10 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextScene()
     {
+         savedScore = score; 
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
     }
 
     void AssignUIElements()

@@ -41,6 +41,8 @@ public class PauseManager : MonoBehaviour
 
     public void RestartGame(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameManager.Instance.score = GameManager.Instance.savedScore;
+
 
     }
 
