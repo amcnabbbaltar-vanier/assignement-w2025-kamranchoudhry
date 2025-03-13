@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class JumpBoost : MonoBehaviour
 {
-    public float rotationSpeed = 50f; // Speed of rotation
-    public float hoverSpeed = 2f;   // Speed of hover movement
-    public float hoverHeight = 1f;  // Hover height
-    public float speedIncrease = 1.5f;  // Amount to increase speed
+    public float rotationSpeed = 50f; 
+    public float hoverSpeed = 2f;  
+    public float hoverHeight = 1f;  
+    public float speedIncrease = 1.5f;  
     public float duration = 30f;  
     private ParticleSystem hitParticles;
     // Start is called before the first frame update
@@ -31,14 +31,14 @@ public class JumpBoost : MonoBehaviour
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
     }
 
-          private void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) 
         {
             CharacterMovement player = other.GetComponent<CharacterMovement>();
             if (player != null)
             {
-                hitParticles.Play();
+                 hitParticles.Play();
                  player.EnableDoubleJump(duration); // Enable double jump for 30 seconds
             }
              GetComponent<MeshRenderer>().enabled = false;

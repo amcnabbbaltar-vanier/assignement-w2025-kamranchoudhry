@@ -23,12 +23,12 @@ public class GameManager : MonoBehaviour
         
         Instance = this; 
         DontDestroyOnLoad(gameObject); 
-        SceneManager.sceneLoaded += OnSceneLoaded; // Listen for scene changes
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void Start()
     {
-        AssignUIElements(); // Assign UI elements at start
+        AssignUIElements(); 
     }
 
     void Update()
@@ -64,7 +64,6 @@ public class GameManager : MonoBehaviour
         UpdateUI();
     }
 
-    // 🔥 Fix: Reconnect UI when scene reloads
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         AssignUIElements();
@@ -72,6 +71,6 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded; // Clean up listener
+        SceneManager.sceneLoaded -= OnSceneLoaded; 
     }
 }

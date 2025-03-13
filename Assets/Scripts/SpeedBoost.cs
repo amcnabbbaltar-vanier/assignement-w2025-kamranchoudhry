@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SpeedBoost : MonoBehaviour
 {
-    public float rotationSpeed = 50f; // Speed of rotation
-    public float hoverSpeed = 2f;   // Speed of hover movement
-    public float hoverHeight = 1f;  // Hover height
-    public float speedIncrease = 1.5f;  // Amount to increase speed
-    public float duration = 5f;       // How long the speed boost lasts
+    public float rotationSpeed = 50f; 
+    public float hoverSpeed = 2f;  
+    public float hoverHeight = 1f;  
+    public float speedIncrease = 1.5f;  
+    public float duration = 5f;       
     private ParticleSystem hitParticles;
 
 

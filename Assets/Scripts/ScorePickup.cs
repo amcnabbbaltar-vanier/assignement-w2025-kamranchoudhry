@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ScorePickup : MonoBehaviour
 {
-    public float rotationSpeed = 50f; // Speed of rotation
-    public float hoverSpeed = 2f;   // Speed of hover movement
+    public float rotationSpeed = 50f; 
+    public float hoverSpeed = 2f;   
     public float hoverHeight = 1f; 
     public int scoreValue = 50;
 
