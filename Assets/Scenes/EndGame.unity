@@ -798,6 +798,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 130f70059fa2f4eb29bf41a34ca84fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FinalTime: {fileID: 1087036153}
+  FinalScore: {fileID: 685614121}
 --- !u!1 &1087036151
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,7 +812,7 @@ GameObject:
   - component: {fileID: 1087036154}
   - component: {fileID: 1087036153}
   m_Layer: 0
-  m_Name: Final Time
+  m_Name: FinalTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
