@@ -10,7 +10,6 @@ public class PauseManager : MonoBehaviour
 
     void Update()
     {
-        // Check if the player presses the "Escape" key (or any key you choose).
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
@@ -27,24 +26,16 @@ public class PauseManager : MonoBehaviour
     // This method pauses the game.
     public void PauseGame()
     {
-        // Show Pause Menu UI
         pauseMenuPanel.SetActive(true);
-        // Freeze game time
         Time.timeScale = 0f;
-        // (Optional) Freeze audio
-        // AudioListener.pause = true;
+       
         isPaused = true;
     }
 
-    // This method resumes the game.
     public void ResumeGame()
     {
-        // Hide Pause Menu UI
         pauseMenuPanel.SetActive(false);
-        // Unfreeze game time
         Time.timeScale = 1f;
-        // (Optional) Unfreeze audio
-        // AudioListener.pause = false;
         isPaused = false;
     }
 
@@ -53,12 +44,12 @@ public class PauseManager : MonoBehaviour
 
     }
 
-    // Optional: a method for quitting the game or returning to the main menu.
     public void QuitGame()
     {
-        // If you're in the editor, this won't fully work,
         // but in a built application, this will quit the game.
         SceneManager.LoadScene("MainMenu");
+        GameManager.Instance.score = 0;
+        GameManager.Instance.timer = 0;
 
         // If you have a Main Menu scene, you might do:
         // SceneManager.LoadScene("MainMenu");
