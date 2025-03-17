@@ -25,7 +25,7 @@ public class FallOfMap : MonoBehaviour
                 
                 // Respawn at the initial position
                 other.transform.position = startPosition;
-                other.transform.rotation = Quaternion.identity; // Reset rotation if needed
+                other.transform.rotation = Quaternion.identity; 
             }
         }
     }
